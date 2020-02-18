@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongoproducer
+  annotations:
+    flux.weave.works/tag.podinfo: glob:*
+    flux.weave.works/automated: 'true'
+spec:
+  selector:
+    matchLabels:
+      app: mongoproducer
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mongoproducer
+    spec:
+      containers:
+      - name: mongoproducer
+        image: 314090253224.dkr.ecr.ap-south-1.amazonaws.com/mongoproducer:4
+        ports:
+        - containerPort: 9987
+      imagePullSecrets:
+      - name: ap-south-1-ecr-registry
+      nodeSelector:
+        beta.kubernetes.io/instance-type: r5.large
+        #eks.amazonaws.com/nodegroup: public-subnet-1a
