@@ -24,5 +24,6 @@ spec:
       imagePullSecrets:
       - name: ap-south-1-ecr-registry
       nodeSelector:
-        beta.kubernetes.io/instance-type: r5.large
+        beta.kubernetes.io/instance-type: t3.medium
+        #beta.kubernetes.io/instance-type: r5.large
         #eks.amazonaws.com/nodegroup: public-subnet-1a
