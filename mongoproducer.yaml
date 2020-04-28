@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: mongoproducer
-        image: 314090253224.dkr.ecr.ap-south-1.amazonaws.com/mongoproducer:30
+        image: 314090253224.dkr.ecr.ap-south-1.amazonaws.com/mongoproducer:31
         ports:
         - containerPort: 9987
       imagePullSecrets:
