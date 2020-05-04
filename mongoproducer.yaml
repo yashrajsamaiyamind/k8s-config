@@ -1,11 +1,10 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongoproducer
-  annotations:
-    flux.weave.works/tag.podinfo: glob:*
-    flux.weave.works/automated: 'true'
+  #annotations:
+    #flux.weave.works/tag.podinfo: glob:*
+    #flux.weave.works/automated: 'true'
 spec:
   selector:
     matchLabels:
@@ -21,10 +20,20 @@ spec:
         image: 314090253224.dkr.ecr.ap-south-1.amazonaws.com/mongoproducer:42
         ports:
         - containerPort: 9987
+        resources:
+          limits:
+            memory: 1024Mi
+            cpu: 400m
+          requests:
+            cpu: 100m
+            memory: 512Mi
+  
       imagePullSecrets:
       - name: ap-south-1-ecr-registry
-      nodeSelector:
-         beta.kubernetes.io/instance-type: m5.large
-        #beta.kubernetes.io/instance-type: t3.medium
+        
+      #nodeSelector:
+              #beta.kubernetes.io/instance-type: m5.large
+              #kubernetes.io/hostname: ip-192-168-94-116.ap-south-1.compute.internal
+              #beta.kubernetes.io/instance-type: t3.medium
         #beta.kubernetes.io/instance-type: r5.large
         #eks.amazonaws.com/nodegroup: public-subnet-1a
